@@ -14,6 +14,7 @@ RSpec.describe LoansController, type: :controller do
     it 'responds with a 200' do
       get :show, params: { id: loan.id }
       expect(response).to have_http_status(:ok)
+      expect(JSON.parse(response.body).keys).to include("id", "funded_amount", "created_at", "updated_at", "outstanding_balance")
     end
 
     context 'if the loan is not found' do
